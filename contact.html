@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Form</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: #555;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #4CAF50;
+      outline: none;
+    }
+
+    textarea {
+      height: 80px;
+      resize: none;
+    }
+
+    input[type="submit"],
+    input[type="reset"] {
+      width: 48%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      color: #fff;
+      background: #145f16;
+      transition-duration: 0.5s;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    input[type="reset"] {
+      background: #0010ec;
+      transition-duration: 0.5s;
+    }
+
+    input[type="submit"]:hover {
+      background: #e6ece6;
+      color: #333;
+    }
+
+    input[type="reset"]:hover {
+      background: #be1b1b;
+      color: white;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <form id="contactForm" onsubmit="return validateForm()">
+      <h1>Contact Us</h1>
+
+      <label for="name">Name</label>
+      <input type="text" id="name" placeholder="Enter Your Name" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Enter Your Email" required>
+
+      <label for="country">Select Country</label>
+      <select id="country" required>
+        <option value="">-- Select Country --</option>
+        <option>India</option>
+        <option>USA</option>
+        <option>Others</option>
+      </select>
+
+      <label for="message">Message</label>
+      <textarea id="message" placeholder="Your message here..." required></textarea>
+
+      <div class="button-group">
+        <input type="submit" value="Submit">
+        <input type="reset" value="Reset">
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function validateForm() {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const country = document.getElementById("country").value;
+      const message = document.getElementById("message").value.trim();
+
+      if (!name || !email || !country || !message) {
+        alert("Please fill in all the fields.");
+        return false;
+      }
+      const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      if (!email.match(emailPattern)) {
+        alert("Please enter a valid email address.");
+        return false;
+      }
+
+      alert("Form submitted successfully!");
+      return true;
+    }
+  </script>
+
+</body>
+</html>
